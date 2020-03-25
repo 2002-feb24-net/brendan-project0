@@ -35,7 +35,7 @@ namespace Project0.Library
             List<StoreLoc> allStores = ctx.StoreLoc.ToList();
             foreach (var items in allStores)
             {
-                Console.WriteLine(items.StoreId + "\t" + items.State);
+                Console.WriteLine(items.StoreId + items.Name + "\t" + items.State);
             }
             var choseStore = Console.ReadLine().ToLower();
             if (choseStore == "addS")

@@ -61,10 +61,11 @@ namespace Project0.Library
             string Username = Console.ReadLine();
             Console.Write("Now Please Enter your Password: ");
             string password = ReadPassword();
-            Console.WriteLine("\nIf no one is looking at your device");
+            Console.WriteLine("\n If no one is looking at your device");
             Console.WriteLine("I will confirm the password you just gave");
             Console.WriteLine("All your inputs will disappear in 3 seconds");
             Console.WriteLine("\n Press any key to see it now");
+            Console.WriteLine("\n If your password does not match try again");
             Console.ReadKey(true);
             Console.Write("\nThe password you entered is :" + password);
             Thread.Sleep(1000);

@@ -28,10 +28,17 @@ namespace Project0.Library
 }
     /*public static void PrintallOrders(RestaurantAfrikContext ctx)
     {
-        //List<Customer> customer = ctx.Customer.ToList()
-        //public override string ToString(RestaurantAfrikContext ctx)
+    var ol = ctx.Orders.Where(b => b.OrderId == 1);
+    if (ol.Any())
+    {
+        int MaxId = ctx.orderlistId.Max(a => a.orderlistId);
+        orderlistId = MaxId + 1
+    }
+    
+    List<Customer> customer = ctx.Customers.ToList()
+        public override string ToString(RestaurantAfrikContext ctx)
         int orderSelect = Convert.ToInt32(Console.ReadLine());
-        //Foods prodcut Price = Food.first(prodcut `)
+        Foods prodcut Price = Food.first(prodcut `)
 
     }
     

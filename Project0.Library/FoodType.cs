@@ -41,7 +41,7 @@ namespace Project0.Library
                          select Food.FoodId;
             //var FoodsId = ctx.Foods.First(schoice);
         }
-        public static void placeOrder(RestaurantAfrikContext ctx)
+        public static void addFoodType(RestaurantAfrikContext ctx)
         {
 
             string searchFood = Console.ReadLine();
@@ -54,13 +54,26 @@ namespace Project0.Library
             var allFoodType = ctx.Foods.ToList();
             foreach (var items in allFoodType)
             {
-                Console.WriteLine(items.Name + "\t" + items.Price);
+                Console.WriteLine(items.FoodId + items.Name + "\t" + items.Price);
 
             }
-            
             var foodchoice = Console.ReadLine().ToUpper();
+            if (foodchoice == "add")
+            {
+                FoodType.addFoodType(ctx);
+            }
+            
+            else if (foodchoice != null)
+            {
+                Console.WriteLine($"You Chose + {foodchoice}");
+            }
+            else
+            {
+                Console.WriteLine("Please we do not have that particular item in stock");
+            }
        
         }
+        
     }
 }
         

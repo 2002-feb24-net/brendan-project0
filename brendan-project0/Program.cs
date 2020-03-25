@@ -14,7 +14,7 @@ namespace brendan_project0
             Console.WriteLine("Welcome to RestaurantAfrik!");
             MainMenu.mainMenuPrompt(ctx);
             tableStores.PreferredStore(ctx);
-            FoodType.placeOrder(ctx);
+            FoodType.addFoodType(ctx);
             
 
 
