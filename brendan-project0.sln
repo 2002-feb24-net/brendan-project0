@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "brendan-project0", "brendan-project0.csproj", "{E46F4785-E974-4175-9991-0FD64FC3DFE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "brendan-project0", "brendan-project0\brendan-project0.csproj", "{7411EF3F-DE16-405C-8FD1-E330741FE25D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project0.Library", "Project0.Library\Project0.Library.csproj", "{EC938E6B-37AF-415D-921B-E740852CFE89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E46F4785-E974-4175-9991-0FD64FC3DFE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E46F4785-E974-4175-9991-0FD64FC3DFE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E46F4785-E974-4175-9991-0FD64FC3DFE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E46F4785-E974-4175-9991-0FD64FC3DFE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7411EF3F-DE16-405C-8FD1-E330741FE25D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7411EF3F-DE16-405C-8FD1-E330741FE25D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7411EF3F-DE16-405C-8FD1-E330741FE25D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7411EF3F-DE16-405C-8FD1-E330741FE25D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC938E6B-37AF-415D-921B-E740852CFE89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC938E6B-37AF-415D-921B-E740852CFE89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC938E6B-37AF-415D-921B-E740852CFE89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC938E6B-37AF-415D-921B-E740852CFE89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
