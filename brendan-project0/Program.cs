@@ -12,9 +12,12 @@ namespace brendan_project0
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to RestaurantAfrik!");
-            MainMenu.mainMenuPrompt(ctx);
+
+            var loggedInCustomer = Project0.Library.Customer.CustomerReadPassword(ctx);
+            MainMenu.mainMenuPrompt(ctx,loggedInCustomer);
             tableStores.PreferredStore(ctx);
             FoodType.addFoodType(ctx);
+           
             
 
 

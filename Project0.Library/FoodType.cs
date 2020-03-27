@@ -51,14 +51,15 @@ namespace Project0.Library
                            select Foods;
 
             Console.WriteLine("Choose the foodtype you will like to order: ");
-            var allFoodType = ctx.Foods.ToList();
+            var allFoodType = foodItem.ToList();
             foreach (var items in allFoodType)
             {
                 Console.WriteLine(items.FoodId + items.Name + "\t" + items.Price);
 
             }
             var foodchoice = Console.ReadLine().ToUpper();
-            if (foodchoice == "add")
+            
+            if (foodchoice == "ADD")
             {
                 FoodType.addFoodType(ctx);
             }
@@ -67,6 +68,7 @@ namespace Project0.Library
             {
                 Console.WriteLine($"You Chose + {foodchoice}");
             }
+            
             else
             {
                 Console.WriteLine("Please we do not have that particular item in stock");

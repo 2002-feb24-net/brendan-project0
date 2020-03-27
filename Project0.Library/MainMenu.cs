@@ -10,53 +10,61 @@ namespace Project0.Library
         
 
 
-        public static void mainMenuPrompt(RestaurantAfrikContext ctx)
+        public static void mainMenuPrompt(RestaurantAfrikContext ctx,Customers customer)
+            
         { 
             
-
-            Console.WriteLine("Choose from the following options: ");
-            Console.WriteLine("\t1) Select from Customer List");
-            Console.WriteLine("\t2) Customer Login");
-            Console.WriteLine("\t3) New Customer");
-            Console.WriteLine("\t4) Choose your location");
-            Console.WriteLine("\t5) Will you like to make an order");
-            Console.WriteLine("\t6) Restart");
-            
-           
-
-            int uInput = int.Parse(Console.ReadLine());
-
-            switch (uInput)
+            while(true)
             {
-                case 1:
-                    Customer.DisplayCustomers(ctx);
-                   
-                    break;
-                    
-                case 2:
-                    Console.WriteLine("Please enter your credentials");
-                    Customer.CustomerLogin(ctx);
-                    break;
-                    
-                case 3:
-                    Console.WriteLine("Would you like to Register");
-                    Customer.addnewCustomer(ctx);
-                    break;
+                Console.WriteLine("Choose from the following options: ");
 
-                case 4:
-                    tableStores.showStores(ctx);
-                    break;
-                case 5:
-                    FoodType.showFoodTypes(ctx);
-                    break;
+                Console.WriteLine("\t1) Select from Customer List");
+                Console.WriteLine("\t2) Add Customer");
+                Console.WriteLine("\t3) Show Stores");
+                Console.WriteLine("\t4) Will you like to make an order");
+                Console.WriteLine("\t5) Print order history");
+                Console.WriteLine("\t6) Close");
+                int uInput = 0;
+                while (true)
+                {
+                    try
+                    {
+                        uInput = int.Parse(Console.ReadLine());
+                        break;
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Invalid input. Please try again");
+                    }
+                }
 
-                case 6:
-                    Console.WriteLine("Lets give it another try");
-                    break;
-                default:
-                    break;
+                switch (uInput)
+                {
+                    case 1:
+                        Customer.SearchCustomer(ctx);
+                        break;
+
+                    case 2:
+                        Console.WriteLine("Would you like to Register");
+                        Customer.addnewCustomer(ctx);
+                        break;
+
+                    case 3:
+                        tableStores.showStores(ctx);
+                        break;
+
+                    case 4:
+                        MakeOrders.PlaceOrder(customer);
+                        break;
+                    case 5:
+                        MakeOrders.displayOrders();
+                        break;
+                    default:
+                        break;
+                }
+
             }
-
         }
+            
     }
 }

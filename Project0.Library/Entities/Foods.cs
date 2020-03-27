@@ -8,6 +8,7 @@ namespace Project0.Library.Entities
         public Foods()
         {
             Inventory = new HashSet<Inventory>();
+            Orderline = new HashSet<Orderline>();
         }
 
         public int FoodId { get; set; }
@@ -15,5 +16,6 @@ namespace Project0.Library.Entities
         public decimal Price { get; set; }
 
         public virtual ICollection<Inventory> Inventory { get; set; }
+        public virtual ICollection<Orderline> Orderline { get; set; }
     }
 }

@@ -19,7 +19,9 @@ namespace Project0.Library.Entities
         public virtual DbSet<Drinks> Drinks { get; set; }
         public virtual DbSet<Foods> Foods { get; set; }
         public virtual DbSet<Inventory> Inventory { get; set; }
+        public virtual DbSet<Orderline> Orderline { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
+        public virtual DbSet<Song> Song { get; set; }
         public virtual DbSet<StoreLoc> StoreLoc { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -95,7 +97,7 @@ namespace Project0.Library.Entities
 
             modelBuilder.Entity<Inventory>(entity =>
             {
-                entity.Property(e => e.InventoryId).ValueGeneratedNever();
+                entity.Property(e => e.Inventoryid).HasColumnName("inventoryid");
 
                 entity.Property(e => e.TotalPrice)
                     .HasColumnName("Total Price")
@@ -114,6 +116,34 @@ namespace Project0.Library.Entities
                     .HasConstraintName("FK_Store_StoreId");
             });
 
+            modelBuilder.Entity<Orderline>(entity =>
+            {
+                entity.HasKey(e => e.Orderline1)
+                    .HasName("PK__orderlin__C193051137E1F846");
+
+                entity.ToTable("orderline");
+
+                entity.Property(e => e.Orderline1).HasColumnName("orderline");
+
+                entity.Property(e => e.Foodid).HasColumnName("foodid");
+
+                entity.Property(e => e.Orderid).HasColumnName("orderid");
+
+                entity.Property(e => e.Qty).HasColumnName("qty");
+
+                entity.HasOne(d => d.Food)
+                    .WithMany(p => p.Orderline)
+                    .HasForeignKey(d => d.Foodid)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__orderline__foodi__2BFE89A6");
+
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.Orderline)
+                    .HasForeignKey(d => d.Orderid)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__orderline__order__30C33EC3");
+            });
+
             modelBuilder.Entity<Orders>(entity =>
             {
                 entity.HasKey(e => e.OrderId)
@@ -125,8 +155,6 @@ namespace Project0.Library.Entities
                     .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false);
-
-                entity.Property(e => e.OrderDate).HasColumnName("Order_Date");
 
                 entity.Property(e => e.OrderTime)
                     .HasColumnName("Order_Time")
@@ -145,6 +173,19 @@ namespace Project0.Library.Entities
                     .HasForeignKey(d => d.StoreId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Stores_StoreId");
+            });
+
+            modelBuilder.Entity<Song>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Album).HasColumnName("album");
+
+                entity.Property(e => e.Artist).HasColumnName("artist");
+
+                entity.Property(e => e.Genre).HasColumnName("genre");
+
+                entity.Property(e => e.Title).HasColumnName("title");
             });
 
             modelBuilder.Entity<StoreLoc>(entity =>

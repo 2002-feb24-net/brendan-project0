@@ -16,19 +16,29 @@ namespace Project0.Library
 
         public Orders Order { get; set; }
 
-
         public static void DisplayCustomers(RestaurantAfrikContext ctx)
         {
+            var custList = ctx.Customers.ToList();
+            PrintCustomers(ctx, custList);
+        }
 
-            List<Customers> Customer = ctx.Customers.ToList();
-
+        public static void PrintCustomers(RestaurantAfrikContext ctx, List<Customers> Customer)
+        {
             foreach (var item in Customer)
             {
                 Console.WriteLine($"{item.CustomerId} \n{item.FirstName} {item.LastName} \n{item.Address} {item.Phone} {item.City} {item.State} {item.Zipcode} ");
             }
-            Console.WriteLine(" If you are already Registered, Select from the customer list");
-            Console.ReadLine();
-
+        }
+        public static void SearchCustomer(RestaurantAfrikContext ctx)
+        {
+            DisplayCustomers(ctx);
+            Console.WriteLine("Enter your first name: ");
+            string firstName = Console.ReadLine();
+            Console.WriteLine("Enter your last name: ");
+            string lastName = Console.ReadLine();
+            var custList = ctx.Customers.Where(cust => cust.FirstName == firstName && cust.LastName == lastName).ToList();
+            PrintCustomers(ctx,custList);
+           
         }
         public static void addnewCustomer(RestaurantAfrikContext ctx)
         {
@@ -49,10 +59,45 @@ namespace Project0.Library
 
             Console.Write("Enter phone: ");
             newCustomer.Phone = System.Console.ReadLine();
+            for (int t = 3; t >= 0; t--)
+            {
 
-            ctx.Customers.Add(newCustomer);
-            ctx.SaveChanges();
-            Thread.Sleep(2000);
+                Console.Write("Enter phone: ");
+                string phone = System.Console.ReadLine();
+                try
+                {
+                    long.Parse(phone);
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invalid Input");
+                    continue;
+                }
+                if (t == 0) return;
+
+
+                if (phone.Length != 10)
+                //(x > 10 || x < 10) 
+                {
+
+                    System.Console.WriteLine("Invalid input. You have " + t + " tries left.");
+                    continue;
+
+                }
+
+                if (t == 0)
+                {
+                    Console.WriteLine("You have reached the maximum limit. Please restart application");
+                    return;
+
+                }
+
+
+                ctx.Customers.Add(newCustomer);
+                ctx.SaveChanges();
+                Thread.Sleep(2000);
+                break;
+            }
         }
         public static void CustomerLogin(RestaurantAfrikContext ctx)
         {
@@ -72,13 +117,15 @@ namespace Project0.Library
             Console.Clear();
             Console.ReadKey(true);
         }
-        public static string CustomerReadPassword(RestaurantAfrikContext ctx)
+        public static Customers CustomerReadPassword(RestaurantAfrikContext ctx)
         {
-            Console.WriteLine("Provide a valid machine or domain account. [domain\\user]");
+            Console.WriteLine("Provide a valid application domain account. [domain\\user]");
             Console.WriteLine("   Enter username:");
             string username = Console.ReadLine();
             Console.WriteLine("   Enter password:");
-                string password = "";
+            string password = "";
+
+
             ConsoleKeyInfo info = Console.ReadKey(true);
             while (info.Key != ConsoleKey.Enter)
             {
@@ -99,7 +146,10 @@ namespace Project0.Library
             }
             for (int i = 0; i < password.Length; i++)
                 Console.Write("*");
-            return password;
+
+            // get customer that matches username above
+            using var context = new RestaurantAfrikContext();
+            return context.Customers.First(x => x.FirstName == username); // returns the customer that matches username on its firstname column
         }
         public static string ReadPassword()
         {
@@ -135,22 +185,24 @@ namespace Project0.Library
             return password;
 
         }
-
-
-
-        /*public DisplayCustomer(string first, string last, string address, long phone)
-        {
-            this.firstName = first;
-            this.lastName = last;
-            this.address = address;
-            this.Id = Id;
-            this.phoneNumber = phone;
-
-        }*/
+        
     }
-
-
 }
+      
+
+
+
+            /*public DisplayCustomer(string first, string last, string address, long phone)
+            {
+                this.firstName = first;
+                this.lastName = last;
+                this.address = address;
+                this.Id = Id;
+                this.phoneNumber = phone;
+
+            }*/
+  
+
 
 
     /*public string Customers()
